@@ -1,5 +1,9 @@
+<!-- Se declara la libreria de JSTL. -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
+<!-- Se declara la libreria de SPRING. --> 
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <footer>
-	Raúl de Roba ® Ipartek 2017
+	<spring:message code="home.hechopor" text="Realizado por" /> RaÃºl de Roba Â® Ipartek 2017
 </footer>
 </body>
 </html>
