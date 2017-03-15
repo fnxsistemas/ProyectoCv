@@ -18,57 +18,14 @@ USE `proyectocv`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `datosacademicos`
---
-
-DROP TABLE IF EXISTS `datosacademicos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `datosacademicos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `persona` int(11) NOT NULL,
-  `codigo` varchar(45) COLLATE utf8_bin NOT NULL,
-  `Empresa` int(11) DEFAULT NULL,
-  `descripcion` blob,
-  `ftitulacion` date DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_datosacademicos_persona_idx` (`persona`),
-  KEY `fk_datosacademicos_empresa_idx` (`Empresa`),
-  CONSTRAINT `fk_datosacademicos_empresa` FOREIGN KEY (`Empresa`) REFERENCES `mydb`.`empresa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_datosacademicos_persona` FOREIGN KEY (`persona`) REFERENCES `mydb`.`persona` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `datosacademicos`
 --
 
 LOCK TABLES `datosacademicos` WRITE;
 /*!40000 ALTER TABLE `datosacademicos` DISABLE KEYS */;
+INSERT INTO `datosacademicos` VALUES (2,1,'1',1,'Persona Uno - Empresa Uno','2017-01-01');
 /*!40000 ALTER TABLE `datosacademicos` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `empresa`
---
-
-DROP TABLE IF EXISTS `empresa`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `empresa` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `codigo` int(11) NOT NULL,
-  `nombre` varchar(50) COLLATE utf8_bin NOT NULL,
-  `direccion` varchar(50) COLLATE utf8_bin DEFAULT NULL,
-  `poblacion` varchar(25) COLLATE utf8_bin DEFAULT NULL,
-  `codigopostal` varchar(5) COLLATE utf8_bin DEFAULT NULL,
-  `provincia` varchar(15) COLLATE utf8_bin DEFAULT NULL,
-  `email` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `telefono` int(11) DEFAULT NULL,
-  `web` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `empresa`
@@ -76,31 +33,9 @@ CREATE TABLE `empresa` (
 
 LOCK TABLES `empresa` WRITE;
 /*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
+INSERT INTO `empresa` VALUES (1,1,'endesa','calle endesa','barakaldo','48002','albacete','e@e.com',7,'4');
 /*!40000 ALTER TABLE `empresa` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `experienciaprofesional`
---
-
-DROP TABLE IF EXISTS `experienciaprofesional`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `experienciaprofesional` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `codigo` int(11) NOT NULL,
-  `persona` int(11) NOT NULL,
-  `empresa` int(11) NOT NULL,
-  `descripcion` blob NOT NULL,
-  `fdesde` date DEFAULT NULL,
-  `fhasta` date DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_experienciaprofesional_persona_idx` (`persona`),
-  KEY `fk_experienciaprofesional_empresa_idx` (`empresa`),
-  CONSTRAINT `fk_experienciaprofesional_empresa` FOREIGN KEY (`empresa`) REFERENCES `mydb`.`empresa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_experienciaprofesional_persona` FOREIGN KEY (`persona`) REFERENCES `mydb`.`persona` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `experienciaprofesional`
@@ -108,29 +43,9 @@ CREATE TABLE `experienciaprofesional` (
 
 LOCK TABLES `experienciaprofesional` WRITE;
 /*!40000 ALTER TABLE `experienciaprofesional` DISABLE KEYS */;
+INSERT INTO `experienciaprofesional` VALUES (2,1,1,1,'Esp','2017-01-01','2017-01-02');
 /*!40000 ALTER TABLE `experienciaprofesional` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `formacioncomplementaria`
---
-
-DROP TABLE IF EXISTS `formacioncomplementaria`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `formacioncomplementaria` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `persona` int(11) NOT NULL,
-  `codigo` varchar(45) COLLATE utf8_bin NOT NULL,
-  `Empresa` int(11) NOT NULL,
-  `descripcion` blob,
-  PRIMARY KEY (`id`),
-  KEY `fk_datosacademicos_persona_idx` (`persona`),
-  KEY `fk_datosacademicos_empresa_idx` (`Empresa`),
-  CONSTRAINT `fk_formacioncomplementaria_empresa` FOREIGN KEY (`Empresa`) REFERENCES `mydb`.`empresa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_formacioncomplementaria_persona` FOREIGN KEY (`persona`) REFERENCES `mydb`.`persona` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `formacioncomplementaria`
@@ -138,31 +53,9 @@ CREATE TABLE `formacioncomplementaria` (
 
 LOCK TABLES `formacioncomplementaria` WRITE;
 /*!40000 ALTER TABLE `formacioncomplementaria` DISABLE KEYS */;
+INSERT INTO `formacioncomplementaria` VALUES (1,1,'1',1,'persona uno');
 /*!40000 ALTER TABLE `formacioncomplementaria` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `persona`
---
-
-DROP TABLE IF EXISTS `persona`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `persona` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `codigo` int(11) NOT NULL,
-  `nombre` varchar(100) COLLATE utf8_bin NOT NULL,
-  `fnacimiento` date NOT NULL,
-  `direccion` varchar(50) COLLATE utf8_bin DEFAULT NULL,
-  `poblacion` varchar(25) COLLATE utf8_bin DEFAULT NULL,
-  `codigopostal` varchar(5) COLLATE utf8_bin DEFAULT NULL,
-  `provincia` varchar(15) COLLATE utf8_bin DEFAULT NULL,
-  `email` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `telefono` int(11) DEFAULT NULL,
-  `movil` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `persona`
@@ -170,6 +63,7 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
+INSERT INTO `persona` VALUES (1,1,'raul','2017-01-01','calle','valle','48510','vizcaya','a@a.com',9,62);
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -180,6 +74,141 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'proyectocv'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `datosacademicosCreate` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `datosacademicosCreate`(
+/* Parametros de Entrada*/
+in `pcodigo` int(11), 
+in `ppersona` int(11), 
+in `pempresa` int(11),
+in `pdescripcion` blob, 
+in `pftitulacion` date,
+/* Parametro de Salida.*/
+OUT `pid` INT)
+BEGIN
+    /* Se inserta los parametros recibidos en la tabla EMPRESA.*/
+	INSERT INTO datosacademicos (codigo, persona, empresa, descripcion, 
+                                 ftitulacion)
+	VALUES (pcodigo, ppersona, pempresa, Lower(pdescripcion), pftitulacion);
+            
+    /* Se devuelve el codigo de la ultima inserción.*/
+    SET pid = LAST_INSERT_ID();    
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `datosacademicosDelete` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `datosacademicosDelete`(IN `pid` INT)
+BEGIN  
+    /* Se borra un dato academico en base al id pasado por parametro.*/
+	DELETE FROM datosacademicos WHERE datosacademicos.id = pid;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `datosacademicosGetAll` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `datosacademicosGetAll`()
+BEGIN
+	/* Sentencia que muestra todos los datosacademicos de la Bd.*/
+	SELECT datosacademicos.id, datosacademicos.persona, datosacademicos.codigo, 
+           datosacademicos.empresa, datosacademicos.descripcion,
+           datosacademicos.ftitulacion
+    FROM datosacademicos;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `datosacademicosGetById` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `datosacademicosGetById`(IN `pid` INT)
+BEGIN
+	/* Sentencia que muestra el dato academico de la Bd 
+       cuyo id coincida con el parametro pasado..*/
+	SELECT datosacademicos.id, datosacademicos.persona, datosacademicos.codigo, 
+           datosacademicos.empresa, datosacademicos.descripcion,
+           datosacademicos.ftitulacion
+    FROM datosacademicos
+    WHERE datosacademicos.id = pid;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `datosacademicosUpdate` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `datosacademicosUpdate`(
+/* Parametros de Entrada*/
+in `pid` INT(11),
+in `pcodigo` int(11), 
+in `ppersona` int(11), 
+in `pempresa` int(11),
+in `pdescripcion` blob, 
+in `pftitulacion` date)
+BEGIN
+    /* Se actualiza los parametros recibidos en la tabla DATOS ACADEMICOS.*/
+	UPDATE datosacademicos set codigo = pcodigo, 
+					           persona = ppersona, 
+							   empresa = pempresa, 
+                               descripcion = LOWER(pdescripcion),
+						       ftitulacion = pftitulacion
+	WHERE datosacademicos.id = pid;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `empresaCreate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -207,8 +236,8 @@ BEGIN
     /* Se inserta los parametros recibidos en la tabla EMPRESA.*/
 	INSERT INTO empresa (codigo, nombre, direccion, poblacion,
 						 codigopostal, provincia, email, telefono, web)
-	VALUES (pcodigo, LOWER(pnombre), LOWER(pdireccion), LOWER(poblacion),
-			pcodigopostal, LOWER(provincia), LOWER(email), telefono, LOWER(web));
+	VALUES (pcodigo, LOWER(pnombre), LOWER(pdireccion), LOWER(ppoblacion),
+			pcodigopostal, LOWER(pprovincia), LOWER(pemail), ptelefono, LOWER(pweb));
             
     /* Se devuelve el codigo de la ultima inserción.*/
     SET pid = LAST_INSERT_ID();    
@@ -310,6 +339,420 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `empresaInformeDatosAcademicos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `empresaInformeDatosAcademicos`(IN `pid` INT)
+BEGIN
+	/* Sentencia que muestra todas las personas de la Bd.*/
+	SELECT empresa.id, empresa.codigo, empresa.nombre, empresa.direccion, 
+           empresa.poblacion, empresa.codigopostal, empresa.provincia, 
+           empresa.email, empresa.telefono, empresa.web,
+           datosacademicos.id, datosacademicos.persona, datosacademicos.codigo, 
+           datosacademicos.empresa, datosacademicos.descripcion,
+           datosacademicos.ftitulacion,
+           persona.id, persona.codigo, persona.nombre, persona.fnacimiento, 
+           persona.direccion, persona.poblacion, persona.codigopostal, 
+           persona.provincia, persona.email, persona.telefono, 
+           persona.movil           
+    FROM empresa
+    JOIN datosacademicos ON datosacademicos.empresa = empresa.id  
+    JOIN persona ON datosacademicos.persona = persona.id  
+    WHERE persona.id=pid;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `empresaInformeExperienciaProfesional` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `empresaInformeExperienciaProfesional`(IN `pid` INT)
+BEGIN
+	/* Sentencia que muestra todas las personas de la Bd.*/
+	SELECT empresa.id, empresa.codigo, empresa.nombre, empresa.direccion, 
+           empresa.poblacion, empresa.codigopostal, empresa.provincia, 
+           empresa.email, empresa.telefono, empresa.web,
+           experienciaprofesional.id, experienciaprofesional.persona, 
+		   experienciaprofesional.codigo, 
+           experienciaprofesional.empresa, experienciaprofesional.descripcion,
+           experienciaprofesional.fdesde, experienciaprofesional.fhasta,
+           persona.id, persona.codigo, persona.nombre, persona.fnacimiento, 
+           persona.direccion, persona.poblacion, persona.codigopostal, 
+           persona.provincia, persona.email, persona.telefono, 
+           persona.movil           
+    FROM empresa
+	JOIN experienciaprofesional ON experienciaprofesional.empresa = empresa.id
+    JOIN persona ON experienciaprofesional.persona = persona.id
+  
+    WHERE persona.id=pid;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `empresaInformeFormacionComplementaria` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `empresaInformeFormacionComplementaria`(IN `pid` INT)
+BEGIN
+	/* Sentencia que muestra todas las personas de la Bd.*/
+	SELECT empresa.id, empresa.codigo, empresa.nombre, empresa.direccion, 
+           empresa.poblacion, empresa.codigopostal, empresa.provincia, 
+           empresa.email, empresa.telefono, empresa.web,
+           formacioncomplementaria.id, formacioncomplementaria.persona, 
+           formacioncomplementaria.codigo, 
+           formacioncomplementaria.empresa, formacioncomplementaria.descripcion,
+		   persona.id, persona.codigo, persona.nombre, persona.fnacimiento, 
+           persona.direccion, persona.poblacion, persona.codigopostal, 
+           persona.provincia, persona.email, persona.telefono, 
+           persona.movil           
+    FROM empresa
+	JOIN formacioncomplementaria ON formacioncomplementaria.empresa = empresa.id  
+    JOIN persona ON formacioncomplementaria.persona = persona.id 
+    WHERE persona.id=pid;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `empresaUpdate` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `empresaUpdate`(
+/* Parametros de Entrada*/
+in `pid` INT(11),
+in `pcodigo` int(11), 
+in `pnombre` varchar(50), 
+in `pdireccion` varchar(50) ,
+in `ppoblacion` varchar(25), 
+in `pcodigopostal` varchar(5), 
+in `pprovincia` varchar(15), 
+in `pemail` varchar(100), 
+in `ptelefono` int(11) ,
+in `pweb` varchar(100))
+BEGIN
+    /* Se actualiza los parametros recibidos en la tabla EMPRESA.*/
+	UPDATE empresa set codigo = pcodigo, 
+					    nombre = LOWER(pnombre), 
+                        direccion = LOWER(pdireccion), 
+                        poblacion = LOWER(ppoblacion),
+						codigopostal = pcodigopostal, 
+                        provincia = LOWER(pprovincia), 
+                        email = LOWER(pemail), 
+                        telefono = ptelefono, 
+                        web = LOWER(pweb)
+	WHERE empresa.id = pid;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `experienciaprofesionalCreate` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `experienciaprofesionalCreate`(
+/* Parametros de Entrada*/
+in `pcodigo` int(11), 
+in `ppersona` int(11), 
+in `pempresa` int(11),
+in `pdescripcion` blob, 
+in `pfdesde` date,
+in `pfhasta` date,
+/* Parametro de Salida.*/
+OUT `pid` INT)
+BEGIN
+    /* Se inserta los parametros recibidos en la tabla EXPERIENCIAPROFESIONAL.*/
+	INSERT INTO experienciaprofesional (codigo, persona, empresa, descripcion, 
+                                        fdesde,fhasta)
+	VALUES (pcodigo, ppersona, pempresa, Lower(pdescripcion), 
+            pfdesde,pfhasta);
+            
+    /* Se devuelve el codigo de la ultima inserción.*/
+    SET pid = LAST_INSERT_ID();    
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `experienciaprofesionalDelete` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `experienciaprofesionalDelete`(IN `pid` INT)
+BEGIN  
+    /* Se borra una experiencia profesional 
+       en base al id pasado por parametro.*/
+	DELETE FROM experienciaprofesional WHERE experienciaprofesional.id = pid;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `experienciaprofesionalGetAll` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `experienciaprofesionalGetAll`()
+BEGIN
+	/* Sentencia que muestra todos los datosacademicos de la Bd.*/
+	SELECT experienciaprofesional.id, experienciaprofesional.persona, 
+		   experienciaprofesional.codigo, 
+           experienciaprofesional.empresa, experienciaprofesional.descripcion,
+           experienciaprofesional.fdesde, experienciaprofesional.fhasta
+    FROM experienciaprofesional;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `experienciaprofesionalGetById` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `experienciaprofesionalGetById`(IN `pid` INT)
+BEGIN
+	/* Sentencia que muestra la experiencia profesional de la Bd 
+       cuyo id coincida con el parametro pasado..*/
+	SELECT experienciaprofesional.id, experienciaprofesional.persona, 
+           experienciaprofesional.codigo, 
+           experienciaprofesional.empresa, experienciaprofesional.descripcion,
+           experienciaprofesional.fdesde, experienciaprofesional.fhasta
+    FROM experienciaprofesional
+    WHERE experienciaprofesional.id = pid;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `experienciaprofesionalUpdate` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `experienciaprofesionalUpdate`(
+/* Parametros de Entrada*/
+in `pid` INT(11),
+in `pcodigo` int(11), 
+in `ppersona` int(11), 
+in `pempresa` int(11),
+in `pdescripcion` blob, 
+in `pfdesde` date,
+in `pfhasta` date)
+BEGIN
+    /* Se actualiza los parametros recibidos en la tabla DATOS ACADEMICOS.*/
+	UPDATE experienciaprofesional set codigo = pcodigo, 
+					                  persona = ppersona, 
+			     		              empresa = pempresa, 
+                                      descripcion = LOWER(pdescripcion),
+			     	                  fdesde = pfdesde,
+                                      fhasta = pfhasta
+	WHERE experienciaprofesional.id = pid;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `formacioncomplementariaCreate` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `formacioncomplementariaCreate`(
+/* Parametros de Entrada*/
+in `pcodigo` int(11), 
+in `ppersona` int(11), 
+in `pempresa` int(11),
+in `pdescripcion` blob,
+/* Parametro de Salida.*/
+OUT `pid` INT)
+BEGIN
+    /* Se inserta los parametros recibidos en la tabla EXPERIENCIAPROFESIONAL.*/
+	INSERT INTO formacioncomplementaria (codigo, persona, empresa, descripcion)
+	VALUES (pcodigo, ppersona, pempresa, Lower(pdescripcion));
+            
+    /* Se devuelve el codigo de la ultima inserción.*/
+    SET pid = LAST_INSERT_ID();    
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `formacioncomplementariaDelete` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `formacioncomplementariaDelete`(IN `pid` INT)
+BEGIN  
+    /* Se borra una formacion complementaria en base al id pasado por parametro.*/
+	DELETE FROM formacioncomplementaria WHERE formacioncomplementaria.id = pid;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `formacioncomplementariaGetAll` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `formacioncomplementariaGetAll`()
+BEGIN
+	/* Sentencia que muestra toda la formacion complementaria de la Bd.*/
+	SELECT formacioncomplementaria.id, formacioncomplementaria.persona, 
+           formacioncomplementaria.codigo, 
+           formacioncomplementaria.empresa, formacioncomplementaria.descripcion
+    FROM formacioncomplementaria;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `formacioncomplementariaGetById` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `formacioncomplementariaGetById`(IN `pid` INT)
+BEGIN
+	/* Sentencia que muestra toda la formacion complementaria de la Bd.*/
+	SELECT formacioncomplementaria.id, formacioncomplementaria.persona, 
+           formacioncomplementaria.codigo, 
+           formacioncomplementaria.empresa, formacioncomplementaria.descripcion
+    FROM formacioncomplementaria
+    WHERE formacioncomplementaria.id = pid;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `formacioncomplementariaUpdate` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `formacioncomplementariaUpdate`(
+/* Parametros de Entrada*/
+in `pid` INT(11),
+in `pcodigo` int(11), 
+in `ppersona` int(11), 
+in `pempresa` int(11),
+in `pdescripcion` blob)
+BEGIN
+    /* Se actualiza los parametros recibidos en la tabla DATOS ACADEMICOS.*/
+	UPDATE formacioncomplementaria set codigo = pcodigo, 
+					           persona = ppersona, 
+							   empresa = pempresa, 
+                               descripcion = LOWER(pdescripcion)
+	WHERE formacioncomplementaria.id = pid;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `personaCreate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -322,7 +765,6 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `personaCreate`(
 /* Parametros de Entrada*/
-in `pid` INT(11),
 in `pcodigo` int(11), 
 in `pnombre` varchar(100) ,
 in `pfnacimiento` date ,
@@ -332,20 +774,20 @@ in `pcodigopostal` varchar(5),
 in `pprovincia` varchar(15), 
 in `pemail` varchar(100) ,
 in `ptelefono` int(11) ,
-in `pmovil` int(11))
+in `pmovil` int(11),
+/* Parametros de Salida*/
+out `pid` INT(11))
 BEGIN
-	/* Se actualiza la persona con los datos recibidos por parametro.*/
-	UPDATE persona set codigo = pcodigo,
-                       nombre = Lower(pnombre),
-                       fnacimiento = pfnacimiento,
-                       direccion = Lower(pdireccion),
-                       poblacion = Lower(ppoblacion),
-                       codigopostal = pcodigopostal,
-                       provincia = Lower(pprovincia),
-                       email = Lower(pemail),
-                       telefono = ptelefono,
-                       movil = pmovil
-	WHERE persona.id = pid;
+	/* Se inserta los parametros recibidos en la tabla PERSONA.*/
+	INSERT INTO  persona (codigo, nombre, fnacimiento, direccion, 
+                          poblacion, codigopostal, provincia, 
+                          email, telefono, movil)
+	VALUES (pcodigo, Lower(pnombre), pfnacimiento, Lower(pdireccion), 
+            Lower(ppoblacion), pcodigopostal, Lower(pprovincia),
+            Lower(pemail), ptelefono, pmovil);
+    
+    /* Se devuelve el codigo de la ultima inserción.*/
+    SET pid = LAST_INSERT_ID();    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -387,7 +829,8 @@ BEGIN
 	/* Sentencia que muestra todas las personas de la Bd.*/
 	SELECT persona.id, persona.codigo, persona.nombre, persona.fnacimiento, 
            persona.direccion, persona.poblacion, persona.codigopostal, 
-           persona.provincia, persona.email, persona.telefono, movil
+           persona.provincia, persona.email, persona.telefono, 
+           persona.movil
     FROM persona;
 END ;;
 DELIMITER ;
@@ -411,7 +854,8 @@ BEGIN
        coincida con el parametro pasado.*/
 	SELECT persona.id, persona.codigo, persona.nombre, persona.fnacimiento, 
            persona.direccion, persona.poblacion, persona.codigopostal, 
-           persona.provincia, persona.email, persona.telefono, movil
+           persona.provincia, persona.email, persona.telefono, 
+           persona.movil
     FROM persona
     WHERE persona.codigo = pcodigo;
 END ;;
@@ -435,9 +879,110 @@ BEGIN
 	/* Sentencia que muestra la persona cuyo id coincida con el parametro pasado.*/
 	SELECT persona.id, persona.codigo, persona.nombre, persona.fnacimiento, 
            persona.direccion, persona.poblacion, persona.codigopostal, 
-           persona.provincia, persona.email, persona.telefono, movil
+           persona.provincia, persona.email, persona.telefono, 
+           persona.movil
     FROM persona
     WHERE persona.id = pid;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `personaInformeDatosAcademicos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `personaInformeDatosAcademicos`(IN `pid` INT)
+BEGIN
+	/* Sentencia que muestra todas las personas de la Bd.*/
+	SELECT persona.id, persona.codigo, persona.nombre, persona.fnacimiento, 
+           persona.direccion, persona.poblacion, persona.codigopostal, 
+           persona.provincia, persona.email, persona.telefono, 
+           persona.movil,
+           datosacademicos.id, datosacademicos.persona, datosacademicos.codigo, 
+           datosacademicos.empresa, datosacademicos.descripcion,
+           datosacademicos.ftitulacion,
+           empresa.id, empresa.codigo, empresa.nombre, empresa.direccion, 
+           empresa.poblacion, empresa.codigopostal, empresa.provincia, 
+           empresa.email, empresa.telefono, empresa.web
+    FROM persona
+    JOIN datosacademicos ON datosacademicos.persona = persona.id
+    LEFT JOIN empresa ON empresa.id=datosacademicos.empresa    
+    WHERE persona.id=pid;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `personaInformeExperienciaProfesional` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `personaInformeExperienciaProfesional`(IN `pid` INT)
+BEGIN
+	/* Sentencia que muestra todas las personas de la Bd.*/
+	SELECT persona.id, persona.codigo, persona.nombre, persona.fnacimiento, 
+           persona.direccion, persona.poblacion, persona.codigopostal, 
+           persona.provincia, persona.email, persona.telefono, 
+           persona.movil,
+           experienciaprofesional.id, experienciaprofesional.persona, 
+		   experienciaprofesional.codigo, 
+           experienciaprofesional.empresa, experienciaprofesional.descripcion,
+           experienciaprofesional.fdesde, experienciaprofesional.fhasta,
+           empresa.id, empresa.codigo, empresa.nombre, empresa.direccion, 
+           empresa.poblacion, empresa.codigopostal, empresa.provincia, 
+           empresa.email, empresa.telefono, empresa.web
+    FROM persona
+    JOIN experienciaprofesional ON experienciaprofesional.persona = persona.id
+    JOIN empresa ON empresa.id=experienciaprofesional.empresa    
+    WHERE persona.id=pid;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `personaInformeFormacionComplementaria` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `personaInformeFormacionComplementaria`(IN `pid` INT)
+BEGIN
+	/* Sentencia que muestra todas las personas de la Bd.*/
+	SELECT persona.id, persona.codigo, persona.nombre, persona.fnacimiento, 
+           persona.direccion, persona.poblacion, persona.codigopostal, 
+           persona.provincia, persona.email, persona.telefono, 
+           persona.movil,
+           formacioncomplementaria.id, formacioncomplementaria.persona, 
+           formacioncomplementaria.codigo, 
+           formacioncomplementaria.empresa, formacioncomplementaria.descripcion,
+           empresa.id, empresa.codigo, empresa.nombre, empresa.direccion, 
+           empresa.poblacion, empresa.codigopostal, empresa.provincia, 
+           empresa.email, empresa.telefono, empresa.web
+    FROM persona
+    JOIN formacioncomplementaria ON formacioncomplementaria.persona = persona.id
+    JOIN empresa ON empresa.id = formacioncomplementaria.empresa    
+    WHERE persona.id=pid;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -459,25 +1004,27 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `personaUpdate`(
 in `pid` INT(11),
 in `pcodigo` int(11), 
 in `pnombre` varchar(50), 
+in `pfnacimiento` date ,
 in `pdireccion` varchar(50) ,
 in `ppoblacion` varchar(25), 
 in `pcodigopostal` varchar(5), 
 in `pprovincia` varchar(15), 
 in `pemail` varchar(100), 
 in `ptelefono` int(11) ,
-in `pweb` varchar(100))
+in `pmovil` int(11))
 BEGIN
 	/* Se actualiza la empresa con los datos recibidos por parametro.*/
-	UPDATE empresa set codigo = pcodigo,
+	UPDATE persona set codigo = pcodigo,
                        nombre = Lower(pnombre),
+                       fnacimiento = pfnacimiento,
                        direccion = Lower(pdireccion),
                        poblacion = Lower(ppoblacion),
                        codigopostal = pcodigopostal,
                        provincia = Lower(pprovincia),
                        email = Lower(pemail),
                        telefono = ptelefono,
-                       web = Lower(pweb)
-	WHERE empresa.id = pid;
+                       movil = movil
+	WHERE persona.id = pid;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -494,4 +1041,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-14 12:32:40
+-- Dump completed on 2017-03-15 13:06:41
